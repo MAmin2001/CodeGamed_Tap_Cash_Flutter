@@ -19,14 +19,18 @@ class GetAvailableBiometricState extends AppStates
 
 }
 
+
+class AuthenticateLoadingState extends AppStates
+{
+
+}
+
 class AuthenticateSuccessState extends AppStates
 {
 
 }
 
-/*
-class AuthenticateLoadingState extends AppStates
+class AuthenticateFailState extends AppStates
 {
 
 }
-*/
