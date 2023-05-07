@@ -39,7 +39,6 @@ dependencies:
   flutter_hex_color: ^2.0.0
   shared_preferences: ^2.1.0
   dio: ^5.0.3
-  lottie:
 
 
 

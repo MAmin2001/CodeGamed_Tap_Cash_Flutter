@@ -4,15 +4,16 @@ import 'package:dio/dio.dart';
 
 class DioHelper
 {
-  static late Dio dio;
+  static  Dio? dio;
 
   static init()
   {
     dio= Dio(
       BaseOptions(
-        baseUrl: 'localhost:8000/api',
+        baseUrl: 'http://197.33.224.240:8000/api',
         receiveDataWhenStatusError: true,
         headers: {
+          'Access-Control-Allow-Origin': '*',
           'Content-Type':'application/json',
           'Accept':'application/json'
         }
@@ -29,7 +30,7 @@ class DioHelper
      required  Map<String,dynamic> query
 })async
   {
-    return await dio.get(url,queryParameters: query);
+    return await dio!.get(url,queryParameters: query);
   }
 
 
@@ -41,7 +42,7 @@ class DioHelper
 
   })async
   {
-    return await dio.post
+    return await dio!.post
       (
         url,
         queryParameters: query,

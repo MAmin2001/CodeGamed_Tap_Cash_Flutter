@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/register/OTP/otp.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-cubit.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-states.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
@@ -35,7 +38,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return BlocProvider(
         create: (BuildContext context)=>RegisterCubit(),
         child:BlocConsumer<RegisterCubit,RegisterStates>(
-            listener: (context,state){},
+            listener: (context,state)
+            {
+              if(state is RegisterSuccessState)
+              {
+                if(state.registerSuccessModel.status!)
+                {
+                  /*Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));*/
+                }
+              }
+              else if(state is RegisterErrorState)
+                {
+                  {
+                    Fluttertoast.showToast(
+                        msg: 'uuu',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 5,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  }
+                }
+
+            },
             builder: (context,state)=>Scaffold(
               backgroundColor: HexColor('313131'),
               body: Padding(
@@ -380,7 +408,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 onPressed: RegisterCubit.get(context).above18?() {
                                   if (formKey.currentState!.validate())
                                   {
-                                    print('OK');
+                                   RegisterCubit.get(context).userRegister(
+                                       fName: fNameController.text,
+                                       lName: lNameController.text,
+                                       pNumber: phoneController.text,
+                                       password: passwordController.text,
+                                       );
                                   }
                                 }
                                     : null

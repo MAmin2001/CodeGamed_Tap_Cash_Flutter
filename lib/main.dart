@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: PinFingerprint(),
+        home: Dashboard(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch
