@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: RegisterScreen(),
+        home: PinFingerprint(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch
