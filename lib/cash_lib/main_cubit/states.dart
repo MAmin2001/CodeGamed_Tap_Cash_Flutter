@@ -34,3 +34,12 @@ class AuthenticateFailState extends AppStates
 {
 
 }
+
+class ChangeBottomNavBarState extends AppStates{}
+
+class QRScanLoadingState extends AppStates{}
+
+class QRScanErrorState extends AppStates{}
+
+
+class QRScanSuccessState extends AppStates{}

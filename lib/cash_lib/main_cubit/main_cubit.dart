@@ -5,8 +5,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_ios/local_auth_ios.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:tteesstt/cash_lib/main_cubit/states.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/OTP/otp.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
+import 'package:tteesstt/cash_lib/modules/profile/profile.dart';
+import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
 
 class MainCubit extends Cubit<AppStates>
 {
@@ -20,6 +24,15 @@ static final localAuth = LocalAuthentication();/// creating variable of LocalAut
 late bool _canCheckBiometric;
 late List<BiometricType> _availableBiometric ; /// store all types of biometric sensors
 String authorized = 'not authorized';  /// store if can access app or not
+
+
+///QR
+Barcode? result;
+
+QRViewController? controller;
+
+int currentIndex=0;
+
 
 ///FINGERPRINT
 Future<void> checkBiometric () async
@@ -107,7 +120,43 @@ Future<void> authenticate (
   }
 }
 
+void changeBottomNavIndex(int index)
+{
+  currentIndex=index;
+  emit(ChangeBottomNavBarState());
+}
 
+List<Widget> screens=
+[
+  Dashboard(),
+  SmartCard(),
+  Profile(),
+];
+
+
+
+
+  ///QR
+
+  void qrScan (QRViewController controller)
+  {
+    emit(QRScanLoadingState());
+    try
+    {
+      this.controller = controller;
+      controller.scannedDataStream.listen((event)
+      {
+
+        result = event;
+        print(result!.code.toString());
+        emit(QRScanSuccessState());
+      });
+    }on PlatformException catch(error)
+    {
+      print(error);
+      emit(QRScanErrorState());
+    }
+  }
 
 
 
