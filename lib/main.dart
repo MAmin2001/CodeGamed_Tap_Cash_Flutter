@@ -3,14 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:tteesstt/cash_lib/bloc_observer/observer.dart';
 import 'package:tteesstt/cash_lib/main_cubit/main_cubit.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/login/PIN/pin.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
+import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 
 void main() {
+
+
   runApp(const MyApp());
+  Bloc.observer = MyBlocObserver();
+  //DioHelper.init();
   AuthenticationOptions();
 
 }
@@ -24,7 +31,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: Dashboard(),
+        home: RegisterScreen(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch

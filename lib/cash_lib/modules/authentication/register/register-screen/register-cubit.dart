@@ -1,7 +1,12 @@
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/models/register/register_error_model.dart';
+import 'package:tteesstt/cash_lib/models/register/register_succcess_model.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-states.dart';
+import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class RegisterCubit extends Cubit<RegisterStates>
@@ -20,6 +25,9 @@ class RegisterCubit extends Cubit<RegisterStates>
   bool isOb2 =true;
   bool above18=false;
   Color suffixColor=Colors.white;
+  late CashRegisterSuccessModel registerSuccessModel;
+   CashRegisterErrorModel? registerErrorModel;
+
 
   void label1()
   {
@@ -68,6 +76,43 @@ class RegisterCubit extends Cubit<RegisterStates>
   {
     above18=!above18;
     emit(RegisterCheckAgeState());
+  }
+
+
+  void userRegister({
+    required String fName,
+    required String lName,
+    required String pNumber,
+    required String password,
+
+  })async
+  {
+    DioHelper.init();
+    emit(RegisterLoadingState());
+    Response register =await DioHelper.postData(
+        url: '/register',
+        data:
+        {
+          'first_name': fName,
+          'last_name':lName,
+          'phone_number':pNumber,
+          'password':password,
+        });
+    print('alooooooo');
+    //     .then((value)
+    // {
+    //   registerSuccessModel=CashRegisterSuccessModel.fromJson(value.data);
+    //   print(registerSuccessModel.message);
+    //   print(registerSuccessModel.status);
+    //   emit(RegisterSuccessState(registerSuccessModel));
+    //  });
+       /* .catchError((error)
+    {
+      //registerErrorModel = CashRegisterErrorModel.fromJson(value);
+      emit(RegisterErrorState(error.toString(),));
+      print(error.toString());
+
+    });*/
   }
 
 
