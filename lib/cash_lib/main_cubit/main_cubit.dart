@@ -158,6 +158,20 @@ List<Widget> screens=
     }
   }
 
+  void GenerateCard()
+  {
+    emit(GenerateCardState());
+    Fluttertoast.showToast(
+        msg: 'Hooray your card has been generated',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.teal,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
 
 
 

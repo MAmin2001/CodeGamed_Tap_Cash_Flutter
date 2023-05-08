@@ -43,3 +43,5 @@ class QRScanErrorState extends AppStates{}
 
 
 class QRScanSuccessState extends AppStates{}
+
+class GenerateCardState extends AppStates{}
