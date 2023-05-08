@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/main_cubit/main_cubit.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-cubit.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/pay/qr_code/qr_code.dart';
+import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class PayScreen extends StatelessWidget {
    PayScreen({Key? key}) : super(key: key);
@@ -46,13 +50,29 @@ class PayScreen extends StatelessWidget {
 
    ];
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: SizedBox(
+        height: 70.0,
+        width: 70.0,
+        child: FloatingActionButton(
+          onPressed: ()
+          {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => QRScan()));},
+          child: Icon(Icons.qr_code_scanner_outlined,size: 40.0,),
+
+        ),
+      ),
       backgroundColor: HexColor('313131'),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal:20 ),
+        padding: const EdgeInsets.symmetric(horizontal:20,vertical: 20 ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 40.0,bottom: 30.0),
@@ -126,23 +146,21 @@ class PayScreen extends StatelessWidget {
             Expanded(
              child: GridView.count(
               crossAxisCount: 4,
-              crossAxisSpacing: 20,
+              crossAxisSpacing: 18,
               mainAxisSpacing: 25,
-                 childAspectRatio: 1/0.9,
-               children: List.generate(16, (index) =>CategoryItem(categoryName: catNames[index], icon: catIcons[index],)
+                 childAspectRatio: 1/0.97,
+               children: List.generate(12, (index) =>CategoryItem(categoryName: catNames[index], icon: catIcons[index],)
                // )
               )
         ),
             ),
             SizedBox(height: 5,),
-            FloatingActionButton(
-              onPressed: (){},
-              child: Icon(Icons.qr_code_scanner_outlined,size: 35,),
-            ),
-
           ]
         ),
+
       ),
+
+
     );
   }
 }
@@ -152,25 +170,95 @@ class CategoryItem extends StatelessWidget {
   CategoryItem({Key? key,required this.icon,required this.categoryName}) : super(key: key);
  late IconData icon;
  late String categoryName;
+  var pillNumController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80.0,
-      width: 40.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: Colors.teal,
-      ),
-      child:Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon,size: 30.0,color: Colors.white,),
-            SizedBox(height: 10.0,),
-            Text(categoryName,style: TextStyle(fontSize: 15.0,color: Colors.white,fontWeight: FontWeight.bold),),
-          ],
+    return InkWell(
+      child: Container(
+        height: 80.0,
+        width: 40.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: Colors.teal,
+        ),
+        child:Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon,size: 32.0,color: Colors.white,),
+              SizedBox(height: 10.0,),
+              Text(categoryName,style: TextStyle(fontSize: 16.0,color: Colors.white,fontWeight: FontWeight.bold),),
+            ],
+          ),
         ),
       ),
+      onTap: ()
+      {
+       showModalBottomSheet(
+         backgroundColor: HexColor('313131'),
+           context: context,
+           builder: (context) => Center(
+             child: Padding(
+               padding: const EdgeInsets.all(20.0),
+               child: Column(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                 TextFormField(
+                     controller: pillNumController,
+                     style: TextStyle(color: primarySwatch),
+                     validator: (value) {
+                       if(value!.isEmpty)
+                       {
+                         return "Please enter pill number";
+                       }
+                       else{
+                         return null;
+                       }
+                     },
+                     onTap: ()
+                     {
+                       MainCubit.get(context).label();
+                     },
+                     onSaved: (value) => pillNumController = value! as TextEditingController,
+                     decoration: InputDecoration(
+                       enabledBorder: OutlineInputBorder(
+                           borderRadius: BorderRadius.circular(10),
+                           borderSide: BorderSide(
+                               color: Colors.white
+                           )
+                       ),
+                       focusedBorder: OutlineInputBorder(
+                           borderRadius: BorderRadius.circular(10),
+                           borderSide: BorderSide(
+                               color: primarySwatch
+                           )
+                       ),
+                       disabledBorder: OutlineInputBorder(
+                           borderRadius: BorderRadius.circular(10),
+                           borderSide: BorderSide(
+                               color: primarySwatch
+                           )
+                       ),
+                       labelText: 'Pill number',
+                       labelStyle: TextStyle(color: MainCubit.get(context).labelColor,fontSize: 16.0),
+                     ),
+                     cursorColor: primarySwatch
+                 ),
+                   SizedBox(height: 30.0),
+                   Container(
+                       height: 45.0,
+                       width: 270.0,
+                       child: ElevatedButton(
+                           onPressed: (){},
+                           child: Text('PAY',style: TextStyle(fontSize: 20.0 , color: Colors.white,fontWeight: FontWeight.bold))
+                       )
+                   )
+
+               ],),
+             ),
+           )
+       );
+      },
     );
   }
 }
