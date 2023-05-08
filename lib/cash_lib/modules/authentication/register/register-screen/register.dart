@@ -221,7 +221,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),*/
                            // SizedBox(height: 24,),
                             TextFormField(
-
                                 controller: phoneController,
                                 style: TextStyle(color: primarySwatch),
                                 validator: (value) {
