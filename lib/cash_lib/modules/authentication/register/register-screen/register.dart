@@ -52,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 {
                   {
                     Fluttertoast.showToast(
-                        msg: 'uuu',
+                        msg: 'error',
                         toastLength: Toast.LENGTH_LONG,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 5,
