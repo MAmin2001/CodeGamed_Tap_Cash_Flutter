@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
-import '../../shared/colors/colors.dart';
+class RequestMoney extends StatelessWidget {
+    RequestMoney({Key? key}) : super(key: key);
+    var amountController = TextEditingController();
 
-class Send extends StatelessWidget {
-   Send({Key? key}) : super(key: key);
+    var phoneController = TextEditingController();
 
-   var amountController = TextEditingController();
+    final   formKey = GlobalKey<FormState>();
 
-   var phoneController = TextEditingController();
-
-   final   formKey = GlobalKey<FormState>();
-
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('303131'),
@@ -31,15 +29,15 @@ class Send extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundColor: HexColor('FFAA00'),
+                    backgroundColor: HexColor('3FACDB'),
                     child: Icon(
                         size: 50,
                         color: Colors.white,
-                        Icons.call_made_sharp),
+                        Icons.call_received_outlined),
                   ),
                   SizedBox(height: 64,),
                   TextFormField(
-                    keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.phone,
                       controller: phoneController,
                       style: TextStyle(color: primarySwatch),
                       validator: (value) {
@@ -63,7 +61,7 @@ class Send extends StatelessWidget {
                                   color: Colors.white,
                                   fontSize: 16
                               ),
-                              "(+02)"),
+                              "(+20)"),
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -85,7 +83,7 @@ class Send extends StatelessWidget {
                         ),
                         labelText: 'Phone Number',
                         labelStyle: TextStyle(color: Colors.white,fontSize: 16.0),
-                        hintText: "Send money to : ",
+                        hintText: "Request money from : ",
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
                       cursorColor: primarySwatch
@@ -106,30 +104,30 @@ class Send extends StatelessWidget {
                       },
                       onSaved: (value) => amountController = value! as TextEditingController,
                       decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: Colors.white
-                            )
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: primarySwatch
-                            )
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: primarySwatch
-                            )
-                        ),
-                        labelText: 'Amount',
-                        labelStyle: TextStyle(color: Colors.white,fontSize: 16.0),
-                        hintStyle: TextStyle(color: Colors.grey),
-                        prefixIcon: Icon(
-                            color: Colors.white,
-                            Icons.attach_money)
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: Colors.white
+                              )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: primarySwatch
+                              )
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: primarySwatch
+                              )
+                          ),
+                          labelText: 'Amount',
+                          labelStyle: TextStyle(color: Colors.white,fontSize: 16.0),
+                          hintStyle: TextStyle(color: Colors.grey),
+                          prefixIcon: Icon(
+                              color: Colors.white,
+                              Icons.currency_pound)
                       ),
                       cursorColor: primarySwatch
                   ),
@@ -147,21 +145,21 @@ class Send extends StatelessWidget {
                           onPressed: ()
                           {
                             showDialog(context: context, builder: (context) => AlertDialog(
-                              content: Text("Are you sure you want to send ${amountController.text} \n to +20 ${phoneController.text} ?"),
+                              content: Text("Are you sure you want to request ${amountController.text} \n from +20 ${phoneController.text} ?"),
                               actions: [
                                 TextButton(onPressed: (){}, child: Text("Confirm")),
                                 TextButton(onPressed: (){
                                   Navigator.pop(context);
                                 },
                                     child: Text(
-                                    style: TextStyle(
-                                      color: Colors.red
-                                    ),
-                                    "Cancel")),
+                                        style: TextStyle(
+                                            color: Colors.red
+                                        ),
+                                        "Cancel")),
                               ],
                             ),);
                           },
-                          child: Text("Send",
+                          child: Text("Request",
                             style: TextStyle
                               (
                                 fontSize: 20.0, fontWeight: FontWeight.w500,
@@ -177,6 +175,5 @@ class Send extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
+    );  }
 }
