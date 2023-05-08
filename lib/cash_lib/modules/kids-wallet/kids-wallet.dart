@@ -86,265 +86,194 @@ class KidsWallet extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          FloatingActionButton(
-                              onPressed: (){},
-                            child: Icon(Icons.add),
-                          )
-                        ],
+                      FloatingActionButton(
+                          onPressed: (){},
+                        child: Icon(Icons.add),
                       ),
                       SizedBox(width: 20,),
-                      Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17),
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topRight,
-                                  colors: [HexColor('2D776C'), HexColor("12332E")],
-                                )),
-                            height: 120,
-                            width: 190,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                        style: TextStyle(
+                      InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                          ),
+                          height: 130,
+                          width: 140,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.black,
+                                    radius: 35.0,
+                                    child: Image.asset(
+                                      'images/icons8-children-64.png',
+                                      height: 100.0,
+                                      width: 100.0,
+                                    ),
+                                  ),
+                                  Text(
+                                      style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold
-                                        ),
-                                        "Mahmoud"),
-                                    SizedBox(height: 4,),
-                                    Text(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold
-                                        ),
-                                        "EGP 360"),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                          size: 30,
-                                            color: Colors.white,
-                                            Icons.add)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.white,
-                                            Icons.settings_applications_sharp)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.red,
-                                            Icons.highlight_remove_sharp)),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                      ),
+                                      "Mahmoud"),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-
+                        ),
+                        onTap: (){},
                       ),
                       SizedBox(width: 20,),
-                      Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17),
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topRight,
-                                  colors: [HexColor('2D776C'), HexColor("12332E")],
-                                )),
-                            height: 120,
-                            width: 190,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                        style: TextStyle(
+                      InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                          ),
+                          height: 130,
+                          width: 140,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.black,
+                                    radius: 35.0,
+                                    child: Image.asset(
+                                      'images/icons8-children-64.png',
+                                      height: 100.0,
+                                      width: 100.0,
+                                    ),
+                                  ),
+                                  Text(
+                                      style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold
-                                        ),
-                                        "Selim"),
-                                    SizedBox(height: 4,),
-                                    Text(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold
-                                        ),
-                                        "EGP 430"),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                          size: 30,
-                                            color: Colors.white,
-                                            Icons.add)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.white,
-                                            Icons.settings_applications_sharp)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.red,
-                                            Icons.highlight_remove_sharp)),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                      ),
+                                      "Mahmoud"),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-
+                        ),
+                        onTap: (){},
                       ),
                       SizedBox(width: 20,),
-                      Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17),
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topRight,
-                                  colors: [HexColor('2D776C'), HexColor("12332E")],
-                                )),
-                            height: 120,
-                            width: 190,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                        style: TextStyle(
+                      InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                          ),
+                          height: 130,
+                          width: 140,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.black,
+                                    radius: 35.0,
+                                    child: Image.asset(
+                                      'images/icons8-children-64.png',
+                                      height: 100.0,
+                                      width: 100.0,
+                                    ),
+                                  ),
+                                  Text(
+                                      style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold
-                                        ),
-                                        "Abdelrahman"),
-                                    SizedBox(height: 4,),
-                                    Text(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold
-                                        ),
-                                        "EGP 120"),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                          size: 30,
-                                            color: Colors.white,
-                                            Icons.add)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.white,
-                                            Icons.settings_applications_sharp)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.red,
-                                            Icons.highlight_remove_sharp)),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                      ),
+                                      "Mahmoud"),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-
+                        ),
+                        onTap: (){},
                       ),
                       SizedBox(width: 20,),
-                      Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17),
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topRight,
-                                  colors: [HexColor('2D776C'), HexColor("12332E")],
-                                )),
-                            height: 120,
-                            width: 190,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                        style: TextStyle(
+                      InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                          ),
+                          height: 130,
+                          width: 140,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.black,
+                                    radius: 35.0,
+                                    child: Image.asset(
+                                      'images/icons8-children-64.png',
+                                      height: 100.0,
+                                      width: 100.0,
+                                    ),
+                                  ),
+                                  Text(
+                                      style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold
-                                        ),
-                                        "Ahmed"),
-                                    SizedBox(height: 4,),
-                                    Text(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold
-                                        ),
-                                        "EGP 75"),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                          size: 30,
-                                            color: Colors.white,
-                                            Icons.add)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.white,
-                                            Icons.settings_applications_sharp)),
-                                        IconButton(onPressed: (){
-                                        }, icon: Icon(
-                                            size: 30,
-
-                                            color: Colors.red,
-                                            Icons.highlight_remove_sharp)),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                      ),
+                                      "Mahmoud"),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-
+                        ),
+                        onTap: (){},
+                      ),
+                      SizedBox(width: 20,),
+                      InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                          ),
+                          height: 130,
+                          width: 140,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.black,
+                                    radius: 35.0,
+                                    child: Image.asset(
+                                      'images/icons8-children-64.png',
+                                      height: 100.0,
+                                      width: 100.0,
+                                    ),
+                                  ),
+                                  Text(
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                      "Mahmoud"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: (){},
                       ),
                     ],
                   ),
