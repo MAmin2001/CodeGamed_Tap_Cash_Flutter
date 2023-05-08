@@ -103,7 +103,8 @@ class AddMoney extends StatelessWidget {
                                         ),
                                         "Cancel")),
                               ],
-                            ),);
+                            ),
+                            );
                           },
                           child: Text("Add",
                             style: TextStyle

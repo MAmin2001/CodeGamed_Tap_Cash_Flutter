@@ -11,6 +11,7 @@ import 'package:tteesstt/cash_lib/modules/authentication/register/OTP/otp.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
 import 'package:tteesstt/cash_lib/modules/profile/profile.dart';
 import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
+import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class MainCubit extends Cubit<AppStates>
 {
@@ -28,10 +29,11 @@ String authorized = 'not authorized';  /// store if can access app or not
 
 ///QR
 Barcode? result;
-
 QRViewController? controller;
 
+
 int currentIndex=0;
+Color labelColor = Colors.white;
 
 
 ///FINGERPRINT
@@ -172,7 +174,11 @@ List<Widget> screens=
     );
   }
 
-
+void label()
+{
+  labelColor=primarySwatch;
+  emit(ChangeLabelColorState());
+}
 
 
 

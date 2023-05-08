@@ -87,7 +87,6 @@ class RegisterCubit extends Cubit<RegisterStates>
 
   })
   {
-    DioHelper.init();
     emit(RegisterLoadingState());
     DioHelper.postData(
         url: '/register',
@@ -105,9 +104,9 @@ class RegisterCubit extends Cubit<RegisterStates>
       emit(RegisterSuccessState(registerSuccessModel));
       }).catchError((error)
     {
-      //registerErrorModel = CashRegisterErrorModel.fromJson(value);
-      //emit(RegisterErrorState(error.toString(),));
-     // print(error.toString());
+      registerErrorModel = CashRegisterErrorModel.fromJson(error);
+      emit(RegisterErrorState(error.toString(),registerErrorModel!));
+      print(error.toString());
     });
   }
 

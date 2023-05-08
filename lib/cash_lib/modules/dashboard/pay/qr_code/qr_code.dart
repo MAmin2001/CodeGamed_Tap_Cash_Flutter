@@ -5,6 +5,7 @@ import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:tteesstt/cash_lib/main_cubit/main_cubit.dart';
 import 'package:tteesstt/cash_lib/main_cubit/states.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/pay/pay.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class QRScan extends StatelessWidget {
@@ -21,7 +22,8 @@ class QRScan extends StatelessWidget {
         builder: (context,state)=>Scaffold(
           backgroundColor: HexColor('313131'),
           appBar: AppBar(
-            leading: IconButton(onPressed: (){},icon: Icon(Icons.arrow_back_ios_new_outlined),),
+            leading: IconButton(onPressed: (){Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => PayScreen()));},icon: Icon(Icons.arrow_back_ios_new_outlined),),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
