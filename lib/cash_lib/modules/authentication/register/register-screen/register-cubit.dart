@@ -85,11 +85,11 @@ class RegisterCubit extends Cubit<RegisterStates>
     required String pNumber,
     required String password,
 
-  })async
+  })
   {
     DioHelper.init();
     emit(RegisterLoadingState());
-    Response register =await DioHelper.postData(
+    DioHelper.postData(
         url: '/register',
         data:
         {
@@ -97,22 +97,18 @@ class RegisterCubit extends Cubit<RegisterStates>
           'last_name':lName,
           'phone_number':pNumber,
           'password':password,
-        });
-    print('alooooooo');
-    //     .then((value)
-    // {
-    //   registerSuccessModel=CashRegisterSuccessModel.fromJson(value.data);
-    //   print(registerSuccessModel.message);
-    //   print(registerSuccessModel.status);
-    //   emit(RegisterSuccessState(registerSuccessModel));
-    //  });
-       /* .catchError((error)
+        }).then((value)
+     {
+       registerSuccessModel=CashRegisterSuccessModel.fromJson(value.data);
+       print(registerSuccessModel.message);
+       print(registerSuccessModel.status);
+      emit(RegisterSuccessState(registerSuccessModel));
+      }).catchError((error)
     {
       //registerErrorModel = CashRegisterErrorModel.fromJson(value);
-      emit(RegisterErrorState(error.toString(),));
-      print(error.toString());
-
-    });*/
+      //emit(RegisterErrorState(error.toString(),));
+     // print(error.toString());
+    });
   }
 
 

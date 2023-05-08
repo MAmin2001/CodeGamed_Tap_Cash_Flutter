@@ -10,10 +10,9 @@ class DioHelper
   {
     dio= Dio(
       BaseOptions(
-        baseUrl: 'http://197.33.224.240:8000/api',
+        baseUrl: 'http://10.5.61.129:8000/api',
         receiveDataWhenStatusError: true,
         headers: {
-          'Access-Control-Allow-Origin': '*',
           'Content-Type':'application/json',
           'Accept':'application/json'
         }

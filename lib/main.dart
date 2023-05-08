@@ -8,7 +8,6 @@ import 'package:tteesstt/cash_lib/modules/authentication/login/PIN/pin.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
-import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-profile.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/send/send.dart';
 import 'package:tteesstt/cash_lib/modules/on_boarding/onboarding_screen.dart';
 import 'package:tteesstt/cash_lib/modules/qr_code/qr_code.dart';
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: KidProfile(),
+        home: Dashboard(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch

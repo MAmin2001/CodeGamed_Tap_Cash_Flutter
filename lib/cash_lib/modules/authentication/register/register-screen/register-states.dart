@@ -18,8 +18,8 @@ class RegisterSuccessState extends RegisterStates
 class RegisterErrorState extends RegisterStates
 {
   final String error;
- // final CashRegisterErrorModel registerErrorModel;
-  RegisterErrorState(this.error);
+  final CashRegisterErrorModel registerErrorModel;
+  RegisterErrorState(this.error,this.registerErrorModel);
 }
 
 class RegisterLabelColor1State extends RegisterStates{}
