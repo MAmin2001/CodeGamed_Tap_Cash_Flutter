@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/modules/kids-wallet/kids-wallet.dart';
+import 'package:tteesstt/cash_lib/modules/send/send.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -95,7 +97,9 @@ class Dashboard extends StatelessWidget {
                             width: 53,
                             child: IconButton(
                               color: Colors.white,
-                                onPressed: (){},
+                                onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Send(),));
+                                },
                                 icon: Icon(
                                     size: 33,
                                     Icons.call_made_sharp)),
@@ -195,7 +199,9 @@ class Dashboard extends StatelessWidget {
                           width: 53,
                           child: IconButton(
                               color: Colors.white,
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => KidsWallet(),));
+                              },
                               icon: Icon(
                                   size: 33,
                                   Icons.account_balance_wallet_sharp)),
