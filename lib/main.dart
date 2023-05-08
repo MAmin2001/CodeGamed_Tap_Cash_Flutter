@@ -8,9 +8,9 @@ import 'package:tteesstt/cash_lib/modules/authentication/login/PIN/pin.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
-import 'package:tteesstt/cash_lib/modules/dashboard/pay/pay.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/send/send.dart';
 import 'package:tteesstt/cash_lib/modules/on_boarding/onboarding_screen.dart';
+import 'package:tteesstt/cash_lib/modules/qr_code/qr_code.dart';
 import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
 import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
@@ -24,6 +24,7 @@ void main() {
   Bloc.observer = MyBlocObserver();
   //DioHelper.init();
   AuthenticationOptions();
+
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: PayScreen(),
+        home: Dashboard(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch

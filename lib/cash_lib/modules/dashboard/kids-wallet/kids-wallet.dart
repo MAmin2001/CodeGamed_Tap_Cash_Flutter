@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-profile.dart';
 
 class KidsWallet extends StatelessWidget {
-  const KidsWallet({Key? key}) : super(key: key);
+   KidsWallet({Key? key}) : super(key: key);
+   var amountController = TextEditingController();
 
+   final   formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +128,9 @@ class KidsWallet extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => KidProfile(),));
+                        },
                       ),
                       SizedBox(width: 20,),
                       InkWell(
@@ -199,7 +204,8 @@ class KidsWallet extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: (){
+                        },
                       ),
                       SizedBox(width: 20,),
                       InkWell(
