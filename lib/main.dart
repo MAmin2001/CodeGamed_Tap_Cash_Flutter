@@ -12,6 +12,7 @@ import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-control.dart
 import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-profile.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kids-wallet.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/send/send.dart';
+import 'package:tteesstt/cash_lib/modules/kid/kid-login/kid-login.dart';
 import 'package:tteesstt/cash_lib/modules/on_boarding/onboarding_screen.dart';
 import 'package:tteesstt/cash_lib/modules/profile/profile.dart';
 import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: KidsWallet(),
+        home: KidLogin(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch
