@@ -427,11 +427,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  primary: primarySwatch,
+                                  ), backgroundColor: primarySwatch,
 
                                 ),
                               ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                              Text(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.5
+                                ),
+                                  "Already have an account? "),
+                                TextButton(onPressed: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                                }, child: Text(
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16
+                                    ),
+                                    "Sign In instead"))
+                            ],
                             ),
                           ]
                       ),

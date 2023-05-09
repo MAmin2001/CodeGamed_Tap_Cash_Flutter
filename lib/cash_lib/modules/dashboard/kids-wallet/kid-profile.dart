@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-control.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class KidProfile extends StatefulWidget {
@@ -20,6 +21,9 @@ class _KidProfileState extends State<KidProfile> {
       backgroundColor: HexColor('303131'),
       appBar: AppBar(
         title: Text("Kid Profile"),
+        actions: [
+
+        ],
       ),
       body: Center(
         child: Padding(
@@ -168,33 +172,7 @@ class _KidProfileState extends State<KidProfile> {
                           ElevatedButton.icon(
                             label: Text("Control"),
                             onPressed: (){
-                              showModalBottomSheet(
-                                backgroundColor: HexColor('303131'),
-                                context: context,
-                                builder: (context) => Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        children: [
-                                          Checkbox(
-                                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                              side: BorderSide(width: 2, color: Colors.white),
-                                              activeColor: primarySwatch,
-                                              value: check1,
-                                              onChanged: (value)
-                                              {
-                                                setState(() {
-                                                  isChecked();
-                                                });
-                                              }),                                        ],
-                                      ),
-                                    )
-                                  ],
-                              ),
-                                ),);
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => KidControl(),));
                             },
                             icon: Icon(Icons.settings_applications_rounded),),
                         ],

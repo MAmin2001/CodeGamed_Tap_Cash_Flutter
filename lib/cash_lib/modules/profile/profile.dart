@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class Profile extends StatefulWidget {
@@ -16,6 +17,19 @@ bool isOb=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile"),
+      actions: [
+        TextButton(onPressed: (){
+          Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => LoginScreen(),));
+        }, child: Text(
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white
+            ),
+            "Logout")),
+      ],
+      ),
       backgroundColor: HexColor('313131'),
       body: GestureDetector(
         onTap: (){
@@ -31,7 +45,7 @@ bool isOb=false;
                 children: [
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
