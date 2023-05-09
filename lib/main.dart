@@ -10,7 +10,6 @@ import 'package:tteesstt/cash_lib/modules/authentication/register/register-scree
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/send/send.dart';
 import 'package:tteesstt/cash_lib/modules/on_boarding/onboarding_screen.dart';
-import 'package:tteesstt/cash_lib/modules/qr_code/qr_code.dart';
 import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
 import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()),
       child: MaterialApp(
-        home: Dashboard(),
+        home: AppLayout(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch
