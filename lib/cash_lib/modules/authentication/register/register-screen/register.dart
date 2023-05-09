@@ -221,6 +221,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),*/
                            // SizedBox(height: 24,),
                             TextFormField(
+                                keyboardType: TextInputType.number,
                                 controller: phoneController,
                                 style: TextStyle(color: primarySwatch),
                                 validator: (value) {
@@ -248,7 +249,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           color: Colors.white,
                                           fontSize: 16
                                         ),
-                                        "(+02)"),
+                                        "(+20)"),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
