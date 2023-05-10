@@ -10,20 +10,19 @@ class TapCashLoginModel {
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
-
 }
 
 class Data {
   String? token;
   User? user;
+  Null? errors;
 
-  Data({this.token, this.user});
 
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    errors = json['errors'];
   }
-
 
 }
 
@@ -33,12 +32,15 @@ class User {
   String? pinCode;
   String? firstName;
   String? lastName;
-  Null? mobileVerifiedAt;
+  int? enabled;
+  Null? parentId;
+  String? type;
+  String? mobileVerifiedAt;
   Null? mobileVerifyCode;
   int? mobileAttemptsLeft;
   Null? mobileLastAttemptDate;
   Null? mobileVerifyCodeSentAt;
-  Null? lastLoginAt;
+  String? lastLoginAt;
   String? createdAt;
   String? updatedAt;
 
@@ -50,6 +52,9 @@ class User {
     pinCode = json['pin_code'];
     firstName = json['first_name'];
     lastName = json['last_name'];
+    enabled = json['enabled'];
+    parentId = json['parent_id'];
+    type = json['type'];
     mobileVerifiedAt = json['mobile_verified_at'];
     mobileVerifyCode = json['mobile_verify_code'];
     mobileAttemptsLeft = json['mobile_attempts_left'];
@@ -59,7 +64,6 @@ class User {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
-
 
 }
 

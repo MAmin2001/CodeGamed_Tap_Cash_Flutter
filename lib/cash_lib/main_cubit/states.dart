@@ -47,3 +47,16 @@ class QRScanSuccessState extends AppStates{}
 class GenerateCardState extends AppStates{}
 
 class ChangeLabelColorState extends AppStates{}
+
+
+class DashboardLoadingState extends AppStates{}
+
+class DashboardErrorState extends AppStates
+{
+  final String error;
+
+  DashboardErrorState(this.error);
+}
+
+
+class DashboardSuccessState extends AppStates{}

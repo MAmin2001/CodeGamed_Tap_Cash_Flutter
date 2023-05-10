@@ -3,9 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
-import 'package:tteesstt/cash_lib/models/register/register_error_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tteesstt/cash_lib/models/register/register_succcess_model.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/login/PIN/pin.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-states.dart';
+import 'package:tteesstt/cash_lib/network/local/cache_helper.dart';
 import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
@@ -25,8 +28,7 @@ class RegisterCubit extends Cubit<RegisterStates>
   bool isOb2 =true;
   bool above18=false;
   Color suffixColor=Colors.white;
-  late CashRegisterSuccessModel registerSuccessModel;
-   CashRegisterErrorModel? registerErrorModel;
+  late CashRegisterModel registerModel;
 
 
   void label1()
@@ -85,10 +87,10 @@ class RegisterCubit extends Cubit<RegisterStates>
     required String pNumber,
     required String password,
 
-  })
+  }) async
   {
     emit(RegisterLoadingState());
-    DioHelper.postData(
+    Response response = await DioHelper.postData(
         url: '/register',
         data:
         {
@@ -96,19 +98,95 @@ class RegisterCubit extends Cubit<RegisterStates>
           'last_name':lName,
           'phone_number':pNumber,
           'password':password,
-        }).then((value)
-     {
-       registerSuccessModel=CashRegisterSuccessModel.fromJson(value.data);
-       print(registerSuccessModel.message);
-       print(registerSuccessModel.status);
-      emit(RegisterSuccessState(registerSuccessModel));
-      }).catchError((error)
+        });
+    if(response.statusCode==200||response.statusCode==201)
+      {
+        registerModel=CashRegisterModel.fromJson(response.data);
+        print(registerModel.data!.user!.phoneNumber);
+        emit(RegisterSuccessState(registerModel));
+        sendOTP(pNumber: registerModel.data!.user!.phoneNumber.toString());
+        CacheHelper.saveData(key: 'phone', value: registerModel.data!.user!.phoneNumber.toString());
+      }
+    else if(response.statusCode == 422)
+      {
+        Map<String,dynamic> errors = response.data['errors'];
+        errors.forEach((key, value) {
+          for (int i = 0; i < value.length; i++) {
+            Fluttertoast.showToast(
+                msg: value[i],
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 5,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+          }
+        });
+        emit(RegisterErrorState());
+      }
+
+
+  }
+
+  void sendOTP({
+    required String pNumber,
+  }) async
+  {
+    emit(OTPSendLoadingState());
+    Response response = await DioHelper.postData(
+        url: '/send-otp',
+        data:
+        {
+          'phone_number':pNumber,
+        });
+    if(response.statusCode==200||response.statusCode==201)
     {
-      registerErrorModel = CashRegisterErrorModel.fromJson(error);
-      emit(RegisterErrorState(error.toString(),registerErrorModel!));
-      print(error.toString());
-    });
+      emit(OTPSendSuccessState());
+    }
+
+    }
+
+  void verifyOTP({
+    required String pNumber,
+    required String otp,
+    required BuildContext context,
+  }) async
+  {
+    emit(OTPVerifyLoadingState());
+    Response response = await DioHelper.postData(
+        url: '/verify-otp',
+        data:
+        {
+          'phone_number':pNumber,
+          'otp':otp
+        });
+    if(response.statusCode==200||response.statusCode==201)
+    {
+      emit(OTPVerifySuccessState());
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => LoginScreen()));
+    }
+    else if(response.statusCode == 422)
+    {
+          Fluttertoast.showToast(
+              msg: response.data['message'],
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 5,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          emit(OTPVerifyErrorState());
+      }
+
+    }
+
+
   }
 
 
-}
+
+
+

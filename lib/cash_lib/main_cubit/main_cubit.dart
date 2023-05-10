@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,10 @@ import 'package:tteesstt/cash_lib/modules/authentication/register/OTP/otp.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
 import 'package:tteesstt/cash_lib/modules/profile/profile.dart';
 import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
+import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
+import 'package:tteesstt/cash_lib/shared/constants.dart';
+import 'package:tteesstt/layout/home_layout.dart';
 
 class MainCubit extends Cubit<AppStates>
 {
@@ -34,6 +38,7 @@ QRViewController? controller;
 
 int currentIndex=0;
 Color labelColor = Colors.white;
+ late Map<String,dynamic> dashboardData;
 
 
 ///FINGERPRINT
@@ -101,23 +106,10 @@ Future<void> authenticate (
   }
   authorized=authenticated?'success':'failed';
   print(authorized);
-  /*if(authorized=='failed')
-  {
-    Fluttertoast.showToast(
-      msg: 'Please activate fingerprint',
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 10,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 20.0,
-    );
-    //emit(AuthenticateFailState());
-  }*/
   if(authorized=='success')
   {
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => OTP()));
+        MaterialPageRoute(builder: (context) => AppLayout()));
     //emit(AuthenticateSuccessState());
   }
 }
@@ -178,6 +170,26 @@ void label()
 {
   labelColor=primarySwatch;
   emit(ChangeLabelColorState());
+}
+
+void getDashboard()async
+{
+  emit(DashboardLoadingState());
+   DioHelper.getData(
+      url: '/dashboard',
+     token: token!
+  ).then((value)
+   {
+     print(value.data['first_name']);
+     dashboardData=value.data;
+     print(dashboardData['balance']);
+     emit(DashboardSuccessState());
+   }).catchError((error)
+   {
+     emit(DashboardErrorState(error.toString()));
+     print(error.toString());
+   });
+
 }
 
 

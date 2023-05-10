@@ -1,10 +1,10 @@
-class CashRegisterSuccessModel {
+class CashRegisterModel {
   bool? status;
   String? message;
   Data? data;
 
 
-  CashRegisterSuccessModel.fromJson(Map<String, dynamic> json) {
+  CashRegisterModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
