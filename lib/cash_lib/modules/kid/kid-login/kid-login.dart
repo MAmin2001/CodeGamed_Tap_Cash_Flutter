@@ -30,12 +30,12 @@ class _LoginScreenState extends State<KidLogin> {
         child:BlocConsumer<LoginCubit,LoginStates>(
             listener: (context,state)
             {
-              if (state is LoginSuccessState)
+              /*if (state is LoginSuccessState)
               {
                 if(state.loginModel.status!)
                 {
-                  /*Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => OTP()));*/
+                  *//*Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => OTP()));*//*
                 }
                 else
                 {
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<KidLogin> {
                     );
                   }
                 }
-              }
+              }*/
 
             },
             builder: (context,state)=>Scaffold(
@@ -200,10 +200,10 @@ class _LoginScreenState extends State<KidLogin> {
                                     onPressed: () {
                                       if (formKey.currentState!.validate())
                                       {
-                                        LoginCubit.get(context).userLogin(
+                                        /*LoginCubit.get(context).userLogin(
                                             phoneNumber: phoneController.text,
                                             password: passwordController.text);
-                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => KidDashboard(),));
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => KidDashboard(),));*/
                                       }
                                     },
                                     child: Text("Login",

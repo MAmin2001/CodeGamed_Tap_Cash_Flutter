@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../shared/colors/colors.dart';
 
@@ -225,9 +226,15 @@ class _AddKidState extends State<AddKid> {
                         onPressed: () {
                           if (formKey.currentState!.validate())
                           {
-                              childName = childNameController.text;
-                              childNumber = phoneController.text;
-                              childPassword = passwordController.text;
+                            Fluttertoast.showToast(
+                                msg: 'your child ${childNameController.text.trim()} is added',
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 5,
+                                backgroundColor: Colors.green,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
                           }
                         },
                         child: Text("Add Child",

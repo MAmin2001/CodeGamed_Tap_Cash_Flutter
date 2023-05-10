@@ -8,10 +8,18 @@ import 'package:tteesstt/cash_lib/modules/authentication/login/PIN/pin.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/OTP/otp.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/add-money/add-money.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/dashboard.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/add-kid.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-control.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-profile.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kids-wallet.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/pay/pay.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/send/send.dart';
+import 'package:tteesstt/cash_lib/modules/kid/kid-login/kid-login.dart';
+import 'package:tteesstt/cash_lib/modules/kid/kid-login/kiddashboard/kiddashboard.dart';
 import 'package:tteesstt/cash_lib/modules/on_boarding/onboarding_screen.dart';
+import 'package:tteesstt/cash_lib/modules/profile/profile.dart';
 import 'package:tteesstt/cash_lib/modules/smart_card/smart_card.dart';
 import 'package:tteesstt/cash_lib/network/local/cache_helper.dart';
 import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
@@ -32,7 +40,7 @@ void main()async {
 
    if(token==null)
    {
-     startScreen=RegisterScreen();
+     startScreen=OnBoardingScreen();
    }
    else
    {
@@ -59,7 +67,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: ((BuildContext context)=> MainCubit()..getDashboard()),
       child: MaterialApp(
-        home: startScreen,
+        home: Profile(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primarySwatch

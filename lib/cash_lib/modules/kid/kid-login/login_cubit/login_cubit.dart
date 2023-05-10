@@ -37,7 +37,7 @@ class LoginCubit extends Cubit<LoginStates>
     emit(LoginObscureTextState());
   }
 
-  void userLogin({
+  /*void userLogin({
     required String phoneNumber,
     required String password,
     String? pinCode
@@ -62,7 +62,7 @@ class LoginCubit extends Cubit<LoginStates>
       emit(LoginErrorState(error));
       print(error);
     });
-  }
+  }*/
 
 
 }

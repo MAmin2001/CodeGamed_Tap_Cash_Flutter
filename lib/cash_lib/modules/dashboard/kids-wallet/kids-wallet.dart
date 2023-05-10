@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/add-kid.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-profile.dart';
+import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 class KidsWallet extends StatelessWidget {
    KidsWallet({Key? key}) : super(key: key);
@@ -84,7 +85,7 @@ class KidsWallet extends StatelessWidget {
                         fontSize: 17
                     ),
                     "Kids"),
-                SizedBox(height: 8,),
+                SizedBox(height: 16,),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -100,10 +101,10 @@ class KidsWallet extends StatelessWidget {
                       InkWell(
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(70),
+                            color: primarySwatch,
                           ),
-                          height: 130,
+                          height: 160,
                           width: 140,
                           child: Center(
                             child: Padding(
@@ -111,8 +112,8 @@ class KidsWallet extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    radius: 35.0,
+                                    backgroundColor: primarySwatch,
+                                    radius: 40.0,
                                     child: Image.asset(
                                       'images/icons8-children-64.png',
                                       height: 100.0,
@@ -139,10 +140,10 @@ class KidsWallet extends StatelessWidget {
                       InkWell(
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(70),
+                            color: primarySwatch,
                           ),
-                          height: 130,
+                          height: 160,
                           width: 140,
                           child: Center(
                             child: Padding(
@@ -150,45 +151,8 @@ class KidsWallet extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    radius: 35.0,
-                                    child: Image.asset(
-                                      'images/icons8-children-64.png',
-                                      height: 100.0,
-                                      width: 100.0,
-                                    ),
-                                  ),
-                                  Text(
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                      "Mahmoud"),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        onTap: (){},
-                      ),
-                      SizedBox(width: 20,),
-                      InkWell(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,
-                          ),
-                          height: 130,
-                          width: 140,
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    radius: 35.0,
+                                    backgroundColor: primarySwatch,
+                                    radius: 40.0,
                                     child: Image.asset(
                                       'images/icons8-children-64.png',
                                       height: 100.0,
@@ -208,16 +172,17 @@ class KidsWallet extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => KidProfile(),));
                         },
                       ),
                       SizedBox(width: 20,),
                       InkWell(
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(70),
+                            color: primarySwatch,
                           ),
-                          height: 130,
+                          height: 160,
                           width: 140,
                           child: Center(
                             child: Padding(
@@ -225,8 +190,8 @@ class KidsWallet extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    radius: 35.0,
+                                    backgroundColor: primarySwatch,
+                                    radius: 40.0,
                                     child: Image.asset(
                                       'images/icons8-children-64.png',
                                       height: 100.0,
@@ -245,16 +210,18 @@ class KidsWallet extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => KidProfile(),));
+                        },
                       ),
                       SizedBox(width: 20,),
                       InkWell(
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(70),
+                            color: primarySwatch,
                           ),
-                          height: 130,
+                          height: 160,
                           width: 140,
                           child: Center(
                             child: Padding(
@@ -262,8 +229,8 @@ class KidsWallet extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    radius: 35.0,
+                                    backgroundColor: primarySwatch,
+                                    radius: 40.0,
                                     child: Image.asset(
                                       'images/icons8-children-64.png',
                                       height: 100.0,
@@ -282,7 +249,48 @@ class KidsWallet extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => KidProfile(),));
+                        },
+                      ),
+                      SizedBox(width: 20,),
+                      InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(70),
+                            color: primarySwatch,
+                          ),
+                          height: 160,
+                          width: 140,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: primarySwatch,
+                                    radius: 40.0,
+                                    child: Image.asset(
+                                      'images/icons8-children-64.png',
+                                      height: 100.0,
+                                      width: 100.0,
+                                    ),
+                                  ),
+                                  Text(
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                      "Mahmoud"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => KidProfile(),));
+                        },
                       ),
                     ],
                   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:tteesstt/cash_lib/main_cubit/main_cubit.dart';
+import 'package:tteesstt/cash_lib/main_cubit/states.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-cubit.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/pay/qr_code/qr_code.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
@@ -54,113 +56,117 @@ class PayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: SizedBox(
-        height: 70.0,
-        width: 70.0,
-        child: FloatingActionButton(
-          onPressed: ()
-          {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => QRScan()));},
-          child: Icon(Icons.qr_code_scanner_outlined,size: 40.0,),
+    return BlocConsumer<MainCubit,AppStates>
+      (
+      listener: (context,state){},
+      builder: (context,state)=>Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: SizedBox(
+          height: 70.0,
+          width: 70.0,
+          child: FloatingActionButton(
+            onPressed: ()
+            {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => QRScan()));},
+            child: Icon(Icons.qr_code_scanner_outlined,size: 40.0,),
 
+          ),
         ),
-      ),
-      backgroundColor: HexColor('313131'),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal:20,vertical: 20 ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 40.0,bottom: 30.0),
-              child: Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(17),
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [HexColor('2D776C'), HexColor("12332E")],
-                      )),
-                  width: 349,
-                  height: 134,
-                  child: Column(
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 21,
-                                top: 30,
+        backgroundColor: HexColor('313131'),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal:20,vertical: 20 ),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0,bottom: 30.0),
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(17),
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [HexColor('2D776C'), HexColor("12332E")],
+                          )),
+                      width: 349,
+                      height: 134,
+                      child: Column(
+                        children: [
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 21,
+                                    top: 30,
+                                  ),
+                                  child: Text(
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                      "Hi, Mostafa"),
+                                ),
+                                IconButton(
+                                  iconSize: 35,
+                                  padding: EdgeInsets.only(
+                                      top: 25,
+                                      right: 27.5),
+                                  color: Colors.white,
+                                  onPressed: () {},
+                                  icon: Icon(Icons.list),
+                                )
+                              ]),
+                          SizedBox(height: 6,),
+                          Text(
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16
                               ),
-                              child: Text(
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                  "Hi, Mostafa"),
-                            ),
-                            IconButton(
-                              iconSize: 35,
-                              padding: EdgeInsets.only(
-                                  top: 25,
-                                  right: 27.5),
-                              color: Colors.white,
-                              onPressed: () {},
-                              icon: Icon(Icons.list),
-                            )
-                          ]),
-                      SizedBox(height: 6,),
-                      Text(
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16
-                          ),
-                          "Your Total Balance"),
-                      SizedBox(height: 6,),
-                      Text(
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold
-                          ),
-                          "EGP 20,000"),
-                    ],
+                              "Your Total Balance"),
+                          SizedBox(height: 6,),
+                          Text(
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold
+                              ),
+                              "EGP 20,000"),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Text('Operations',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25.0,
-                color: Colors.white,
-              ),
-            ),
-            Expanded(
-             child: GridView.count(
-              crossAxisCount: 4,
-              crossAxisSpacing: 15,
-              mainAxisSpacing: 25,
-                 childAspectRatio: 1/0.98,
-               children: List.generate(16, (index) =>CategoryItem(categoryName: catNames[index], icon: catIcons[index],)
-               // )
-              )
+                Text('Operations',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.0,
+                    color: Colors.white,
+                  ),
+                ),
+                Expanded(
+                  child: GridView.count(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 25,
+                      childAspectRatio: 1/0.98,
+                      children: List.generate(16, (index) =>CategoryItem(categoryName: catNames[index], icon: catIcons[index],)
+                        // )
+                      )
+                  ),
+                ),
+                SizedBox(height: 5,),
+              ]
+          ),
+
         ),
-            ),
-            SizedBox(height: 5,),
-          ]
-        ),
+
 
       ),
-
-
     );
   }
 }

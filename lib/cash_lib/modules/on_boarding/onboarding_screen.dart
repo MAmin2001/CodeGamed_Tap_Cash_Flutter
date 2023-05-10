@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 
@@ -30,17 +33,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
 List<BoardingModel>boarding=[
   BoardingModel(
-      image: 'images/shop Ob 1.jpg',
+      image: 'images/Group 21.png',
       title: 'Title1',
       body: 'Body1',
   ),
   BoardingModel(
-    image: 'images/shop Ob 2.jpeg',
+    image: 'images/Group 25.png',
     title: 'Title2',
     body: 'Body2',
   ),
   BoardingModel(
-    image: 'images/shop Ob 3.jpg',
+    image: 'images/Group 27.png',
     title: 'Title3',
     body: 'Body3',
   ),
@@ -50,16 +53,18 @@ List<BoardingModel>boarding=[
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor('303131'),
       appBar: AppBar(
         actions: [
-         /*defaultTextButton(
-             width: 120,
-             text: 'skip',
-             function: ()
-             {
-               navigateAndRemove(context,ShopLogin());
-             }
-         )*/
+          TextButton(
+              onPressed: ()
+              {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => RegisterScreen()));
+              },
+              child: Text('Skip',style: TextStyle(color: Colors.white,fontSize: 16),)
+          )
+
         ],
       ),
       body:Padding(
@@ -108,7 +113,8 @@ List<BoardingModel>boarding=[
                   {
                     if(isLast)
                     {
-                     // navigateAndRemove(context,ShopLogin());
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => RegisterScreen()));
 
                     }else
                       {

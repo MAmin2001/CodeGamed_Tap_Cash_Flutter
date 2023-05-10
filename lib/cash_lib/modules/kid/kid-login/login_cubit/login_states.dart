@@ -1,6 +1,7 @@
 
 import 'package:tteesstt/cash_lib/models/login_model.dart';
 
+/*
 abstract class LoginStates {}
 
 
@@ -28,3 +29,4 @@ class LoginLabelColor2State extends LoginStates{}
 class LoginObscureTextState extends LoginStates{}
 
 
+*/
