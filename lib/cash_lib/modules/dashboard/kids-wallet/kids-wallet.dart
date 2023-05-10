@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/add-kid.dart';
 import 'package:tteesstt/cash_lib/modules/dashboard/kids-wallet/kid-profile.dart';
 
 class KidsWallet extends StatelessWidget {
@@ -90,7 +91,9 @@ class KidsWallet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       FloatingActionButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => AddKid(),));
+                          },
                         child: Icon(Icons.add),
                       ),
                       SizedBox(width: 20,),

@@ -40,6 +40,11 @@ dependencies:
   dio: ^5.0.3
   smooth_page_indicator: ^1.0.0+2
   conditional_builder_null_safety: ^0.0.6
+  image_picker:
+  get: ^4.6.5
+  flutter_rating_bar:
+  sliding_switch: ^1.1.0
+  flutter_screenutil: ^5.7.0
 
 
 
