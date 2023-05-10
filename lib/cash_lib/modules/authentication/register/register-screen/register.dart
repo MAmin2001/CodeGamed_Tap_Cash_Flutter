@@ -428,7 +428,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
-                                  ), backgroundColor: primarySwatch,
+                                  ),
 
                                 ),
                               ),

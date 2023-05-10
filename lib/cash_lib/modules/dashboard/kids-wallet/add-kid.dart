@@ -240,7 +240,7 @@ class _AddKidState extends State<AddKid> {
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
-                          ), backgroundColor: primarySwatch,
+                          ),
 
                         ),
                       ),
