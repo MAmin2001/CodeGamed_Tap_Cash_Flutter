@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 },
 );*/
 
- const MaterialColor scaffoldColor = MaterialColor(313131, <int, Color>{
+ /*const MaterialColor scaffoldColor = MaterialColor(313131, <int, Color>{
   50: Color(0xFFE6E6E6),
   100: Color(0xFFC1C1C1),
   200: Color(0xFF989898),
@@ -25,7 +25,7 @@ import 'package:flutter/material.dart';
   700: Color(0xFF252525),
   800: Color(0xFF1F1F1F),
   900: Color(0xFF131313),
-});
+});*/
 
 /*
 MaterialColor primarySwatch = MaterialColor(Color.fromRGBO(51,223,120,255).value, <int, Color>{
@@ -43,7 +43,7 @@ MaterialColor primarySwatch = MaterialColor(Color.fromRGBO(51,223,120,255).value
 );
 */
 
- const MaterialColor primaryColor = MaterialColor(0xFF14CA49, <int, Color>{
+ /*const MaterialColor primaryColor = MaterialColor(0xFF14CA49, <int, Color>{
   50: Color(0xFF14CA49),
   100: Color(0xFF14CA49),
   200: Color(0xFF14CA49),
@@ -54,6 +54,6 @@ MaterialColor primarySwatch = MaterialColor(Color.fromRGBO(51,223,120,255).value
   700: Color(0xFF14CA49),
   800: Color(0xFF14CA49),
   900: Color(0xFF14CA49),
-});
+});*/
 
 const primarySwatch= Colors.teal;

@@ -1,6 +1,7 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:tteesstt/cash_lib/shared/constants.dart';
 
 class DioHelper
 {
@@ -10,12 +11,18 @@ class DioHelper
   {
     dio= Dio(
       BaseOptions(
-        baseUrl: 'http://10.5.61.129:8000/api',
+        baseUrl: 'http://192.168.100.7:8000/api',
         receiveDataWhenStatusError: true,
-        headers: {
-          'Content-Type':'application/json',
-          'Accept':'application/json'
-        }
+        validateStatus: (statusCode){
+          if(statusCode == null){
+            return false;
+          }
+          if(statusCode == 422||statusCode==401){ // your http status code
+            return true;
+          }else{
+            return statusCode >= 200 && statusCode < 300;
+          }
+        },
         // receiveTimeout: ,
         // connectTimeout: ,
       )
@@ -26,21 +33,33 @@ class DioHelper
   static Future <Response> getData({
 
      required String url,
-     required  Map<String,dynamic> query
+       Map<String,dynamic>? query,
+     required String token
 })async
   {
+    dio!.options.headers=
+    {
+      'Content-Type':'application/json',
+      'Accept':'application/json',
+      'Authorization': 'Bearer $token'
+    };
     return await dio!.get(url,queryParameters: query);
   }
 
 
   static Future <Response> postData({
 
-    required String url,
+     required String url,
      Map<String,dynamic>? query,
      required Map<String,dynamic> data
 
   })async
   {
+    dio!.options.headers=
+    {
+      'Content-Type':'application/json',
+      'Accept':'application/json',
+    };
     return await dio!.post
       (
         url,
@@ -48,10 +67,5 @@ class DioHelper
         data: data
       );
   }
-
-
-
-
-
 
 }

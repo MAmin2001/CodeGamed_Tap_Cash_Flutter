@@ -26,33 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context)=>LoginCubit(),
-      child:BlocConsumer<LoginCubit,LoginStates>(
-        listener: (context,state)
-        {
-          if (state is LoginSuccessState)
-          {
-            if(state.loginModel.status!)
-            {
-              /*Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => OTP()));*/
-            }
-            else
-            {
-              {
-                Fluttertoast.showToast(
-                    msg: state.loginModel.message!,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 5,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
-              }
-            }
-          }
-
-        },
+      child: BlocConsumer<LoginCubit,LoginStates>(
+        listener: (context,state) {},
         builder: (context,state)=>Scaffold(
           backgroundColor: HexColor('313131'),
           body: Padding(
@@ -106,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           LoginCubit.get(context).label1();
                         },
                         decoration: InputDecoration(
-
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
@@ -123,9 +97,20 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                   color: primarySwatch
-                              )
+                              ),
                           ),
-
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 20,
+                            ),
+                            child: Text(
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16
+                                ),
+                                "(+20)"),
+                          ),
                           labelText: 'Phone number',
                           labelStyle: TextStyle(color:LoginCubit.get(context).labelColor1,fontSize: 16.0),
 
@@ -200,8 +185,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (formKey.currentState!.validate())
                                 {
                                  LoginCubit.get(context).userLogin(
-                                     phoneNumber: phoneController.text,
-                                     password: passwordController.text);
+                                     phoneNumber: '+20${phoneController.text.trim()}',
+                                     password: passwordController.text.trim(),
+                                     context: context);
                                 }
                               },
                               child: Text("Login",
@@ -234,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         )
-      )
+      ),
     );
   }
 }

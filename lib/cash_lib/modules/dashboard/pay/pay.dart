@@ -146,10 +146,10 @@ class PayScreen extends StatelessWidget {
             Expanded(
              child: GridView.count(
               crossAxisCount: 4,
-              crossAxisSpacing: 18,
+              crossAxisSpacing: 15,
               mainAxisSpacing: 25,
-                 childAspectRatio: 1/0.97,
-               children: List.generate(12, (index) =>CategoryItem(categoryName: catNames[index], icon: catIcons[index],)
+                 childAspectRatio: 1/0.98,
+               children: List.generate(16, (index) =>CategoryItem(categoryName: catNames[index], icon: catIcons[index],)
                // )
               )
         ),

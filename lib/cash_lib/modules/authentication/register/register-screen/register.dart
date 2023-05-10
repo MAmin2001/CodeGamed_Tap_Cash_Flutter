@@ -6,6 +6,7 @@ import 'package:tteesstt/cash_lib/modules/authentication/login/login_screen.dart
 import 'package:tteesstt/cash_lib/modules/authentication/register/OTP/otp.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-cubit.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/register/register-screen/register-states.dart';
+import 'package:tteesstt/cash_lib/network/local/cache_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
 
 
@@ -18,20 +19,15 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   var fNameController=TextEditingController();
-
   var lNameController=TextEditingController();
-
-  //var addressController=TextEditingController();
-
   var phoneController=TextEditingController();
-
   var passwordController=TextEditingController();
-
-  //var cPasswordController=TextEditingController();
 
   bool isButtonActive = false;
 
-  final   formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+
+  //String? phoneNum=CacheHelper.sharedPreferences.getString('phone');
 
   @override
   Widget build(BuildContext context) {
@@ -42,27 +38,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             {
               if(state is RegisterSuccessState)
               {
-                if(state.registerSuccessModel.status!)
+                if(state.registerModel.status!)
                 {
-                  /*Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));*/
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => OTP()));
                 }
               }
-              else if(state is RegisterErrorState)
-                {
-                  {
-                    Fluttertoast.showToast(
-                        msg: 'error',
-                        toastLength: Toast.LENGTH_LONG,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 5,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0
-                    );
-                  }
-                }
-
             },
             builder: (context,state)=>Scaffold(
               backgroundColor: HexColor('313131'),
@@ -73,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     key: formKey,
                     child: SafeArea(
                       child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children:  [
                             SizedBox(height: 32,),
@@ -178,48 +159,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 cursorColor: primarySwatch
                             ),
                             SizedBox(height: 24,),
-                            /*TextFormField(
-                                controller: addressController,
-                                style: TextStyle(color: HexColor('33DF78')),
-                                validator: (value) {
-                                  if(value!.isEmpty)
-                                  {
-                                    return "Please enter your address";
-                                  }
-                                  else{
-                                    return null;
-                                  }
-                                },
-                                onTap: ()
-                                {
-                                  RegisterCubit.get(context).label3();
-                                },
-                                onSaved: (value) => addressController = value! as TextEditingController,
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          color: Colors.white
-                                      )
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          color: HexColor('33DF78')
-                                      )
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          color: HexColor('33DF78')
-                                      )
-                                  ),
-                                  labelText: 'Address',
-                                  labelStyle: TextStyle(color: RegisterCubit.get(context).labelColor3,fontSize: 16.0),
-                                ),
-                                cursorColor: HexColor('33DF78')
-                            ),*/
-                           // SizedBox(height: 24,),
                             TextFormField(
                                 controller: phoneController,
                                 style: TextStyle(color: primarySwatch),
@@ -248,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           color: Colors.white,
                                           fontSize: 16
                                         ),
-                                        "(+02)"),
+                                        "(+20)"),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -325,58 +264,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                                 cursorColor: primarySwatch
                             ),
+                            SizedBox(height: 5,),
+                            Text('*password must be numbers and characters*',style: TextStyle(color: Colors.grey),),
                             SizedBox(height: 24,),
-                           /* TextFormField(
-                                controller: cPasswordController,
-                                style: TextStyle(color: HexColor('33DF78')),
-                                keyboardType: TextInputType.visiblePassword,
-                                validator: (value) {
-                                  if(value!.isEmpty)
-                                  {
-                                    return "Please confirm your password";
-                                  }
-                                  else{
-                                    return null;
-                                  }
-                                },
-                                onTap: ()
-                                {
-                                  RegisterCubit.get(context).label6();
-                                },
-                                onSaved: (value) => cPasswordController = value! as TextEditingController,
-
-                                obscureText: RegisterCubit.get(context).isOb2?true:false,
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          color: Colors.white
-                                      )
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          color: HexColor('33DF78')
-                                      )
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          color: HexColor('33DF78')
-                                      )
-                                  ),
-                                  labelText: 'Confirm Password',
-                                  labelStyle: TextStyle(color: RegisterCubit.get(context).labelColor6,fontSize: 16.0),
-                                  suffixIcon: IconButton(
-                                    onPressed: ()
-                                    {
-                                      RegisterCubit.get(context).obscureText2();
-                                    },
-                                    icon:RegisterCubit.get(context).isOb2?Icon(Icons.visibility_off_outlined,color: Colors.white):Icon(Icons.remove_red_eye_outlined,color:HexColor('33DF78')),
-                                  ),
-                                ),
-                                cursorColor: HexColor('33DF78')
-                            ),*/
                             Row(
                               children: [
                                 Checkbox(
@@ -400,39 +290,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ],
                             ),
                             SizedBox(height: 16,),
-                            SizedBox(
-                              width: 120,
-                              height: 50,
-                              child: ElevatedButton(
-                                onPressed: RegisterCubit.get(context).above18?() {
-                                  if (formKey.currentState!.validate())
-                                  {
-                                   RegisterCubit.get(context).userRegister(
-                                       fName: fNameController.text,
-                                       lName: lNameController.text,
-                                       pNumber: phoneController.text,
-                                       password: passwordController.text,
-                                       );
+                            Center(
+                              child: SizedBox(
+                                width: 120,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: RegisterCubit.get(context).above18?() {
+                                    if (formKey.currentState!.validate())
+                                    {
+                                     RegisterCubit.get(context).userRegister(
+                                         fName: fNameController.text,
+                                         lName: lNameController.text,
+                                         pNumber: '+20${phoneController.text}',
+                                         password: passwordController.text,
+                                         );
+                                    }
                                   }
-                                }
-                                    : null
-                                ,
-                                child: Text("Sign Up",
-                                  style: TextStyle
-                                    (
-                                      fontSize: 20.0, fontWeight: FontWeight.w500,
-                                      color: Colors.white
+                                      : null
+                                  ,
+                                  child: Text("Sign Up",
+                                    style: TextStyle
+                                      (
+                                        fontSize: 20.0, fontWeight: FontWeight.w500,
+                                        color: Colors.white
+                                    ),
                                   ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  primary: primarySwatch,
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    primary: primarySwatch,
 
+                                  ),
                                 ),
                               ),
                             ),
+                            Center(
+                              child: TextButton(
+                                  onPressed: ()
+                                  {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                                  },
+                                  child: Text('Already have an account ?')),
+                            )
                           ]
                       ),
                     ),

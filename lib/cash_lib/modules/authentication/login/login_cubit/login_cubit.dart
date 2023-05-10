@@ -1,10 +1,15 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tteesstt/cash_lib/models/login_model.dart';
+import 'package:tteesstt/cash_lib/modules/authentication/login/PIN/pin.dart';
 import 'package:tteesstt/cash_lib/modules/authentication/login/login_cubit/login_states.dart';
+import 'package:tteesstt/cash_lib/network/local/cache_helper.dart';
 import 'package:tteesstt/cash_lib/network/remote/dio_helper.dart';
 import 'package:tteesstt/cash_lib/shared/colors/colors.dart';
+import 'package:tteesstt/layout/home_layout.dart';
 
 
 class LoginCubit extends Cubit<LoginStates>
@@ -40,29 +45,41 @@ class LoginCubit extends Cubit<LoginStates>
   void userLogin({
     required String phoneNumber,
     required String password,
-    String? pinCode
-  })
+    required BuildContext context
+  })async
   {
     emit(LoginLoadingState());
 
-    DioHelper.postData(
+    Response response = await DioHelper.postData(
         url: '/login',
         data:
         {
           'phone_number': phoneNumber,
-          'password':password,
-          'pin_code':pinCode
-        }).then((value)
+          'password': password,
+        });
+
+    if(response.statusCode==200||response.statusCode==201)
     {
-      loginModel=TapCashLoginModel.fromJson(value.data);
-      print(loginModel.data!.token);
+      loginModel=TapCashLoginModel.fromJson(response.data);
       emit(LoginSuccessState(loginModel));
-    }).catchError((error)
+      CacheHelper.saveData(key: 'token', value: loginModel.data!.token.toString());
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => PinFingerprint()));
+
+    }
+    else if(response.statusCode == 422||response.statusCode == 401)
     {
-      emit(LoginErrorState(error));
-      print(error);
-    });
+
+      Fluttertoast.showToast(
+          msg: response.data['message'],
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 5,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      emit(LoginErrorState());
+    }
   }
-
-
 }
